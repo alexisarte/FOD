@@ -1,0 +1,10 @@
+001 40000 Sony    
+128  256  lindo celular
+Sony Xperia
+002 30000 Huawei    
+12  66  buen celular
+Huawei i7
+003 30000 Samsung    
+123  216  una cagada
+Samsung Galaxy A30
+
