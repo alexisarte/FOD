@@ -1,2 +1,4 @@
 1 Arteaga Alexis 20 43666254
 2 Rodriguez Mikel 20 43666254
+3 perez juan 12 23421312
+4 defoe john 43 00

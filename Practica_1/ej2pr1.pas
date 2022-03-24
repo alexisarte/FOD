@@ -1,5 +1,4 @@
 program ej2pr1;
-uses crt;
 type
   archivo = file of Integer;
 

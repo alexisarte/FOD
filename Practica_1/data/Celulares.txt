@@ -1,0 +1,9 @@
+1 12 HUAWEI
+12 50 plateado
+Huawei i7
+2 30000 Samsung
+9 30 es una cagada
+Samsung Galaxy A30
+3 -25536 Sony
+12 100 Lindo celular
+Sony Xperia

@@ -1,4 +1,4 @@
-Program Generar_Archivo;
+Program generarArchivo;
 type 
     archivo = file of integer; 
   
@@ -10,15 +10,12 @@ var
 procedure mostrarArchivo(var archi_logico: archivo);
 var
     number: integer;
-
 begin
     reset(archi_logico);
-
     while not eof (archi_logico) do begin
         read(archi_logico, number);
         write(number);
     end;
-
     close(archi_logico);
 end;
     

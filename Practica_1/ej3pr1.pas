@@ -1,5 +1,4 @@
-program ej3aPr1;
-uses crt;
+program ej3pr1;
 type
   empleado = record
     nroEmpleado: String;

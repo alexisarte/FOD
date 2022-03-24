@@ -1,5 +1,4 @@
-program ej4Pr1;
-uses crt;
+program ej4pr1;
 type
   empleado = record
     nroEmpleado: String;
@@ -168,7 +167,7 @@ procedure exportar(var empleados: archivo; opcion: integer);
 var
   worker: empleado; texto: Text;
 begin
-  if (opcion = 1) then begin
+  if (opcion = 6) then begin
     assign(texto, 'todos_empleados.txt');  
   end 
   else begin
