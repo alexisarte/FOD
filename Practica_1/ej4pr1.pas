@@ -167,12 +167,10 @@ procedure exportar(var empleados: archivo; opcion: integer);
 var
   worker: empleado; texto: Text;
 begin
-  if (opcion = 6) then begin
-    assign(texto, 'todos_empleados.txt');  
-  end 
-  else begin
-    assign(texto, 'faltaDNIEmpleado.txt')
-  end;
+  if (opcion = 6) then 
+    assign(texto, 'todos_empleados.txt') 
+  else  
+    assign(texto, 'faltaDNIEmpleado.txt');
   reset(empleados);
   rewrite(texto);
   while not eof(empleados) do begin
@@ -223,5 +221,4 @@ begin
       end;
     end;
   until(opcion = 0);
-  readln;
 end.

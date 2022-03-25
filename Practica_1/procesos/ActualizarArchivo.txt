@@ -1,10 +1,8 @@
 procedure actualizarArchivo(var archi: archivo); 
 var
   r: registro;
-
 begin
     reset(archi_logico); 
-
     while not eof(archi_logico) do begin
       read(archi_logico, r); 
       r.campo:= r.campo * 1.1;
