@@ -9,7 +9,6 @@ type
   end;
   
   archivo = file of empleado;
-
   str25 = String[25];
 
 procedure mostrarEmpleado(emp: empleado);
@@ -61,11 +60,10 @@ begin
   writeln();
 end;
 
-procedure crearEmpleados(nombreFisico: str25);
+procedure crearEmpleados(var empleados: archivo);
 var
-  empleados: archivo; worker: empleado;
+  worker: empleado;
 begin
-  assign(empleados, nombreFisico);
   rewrite(empleados);
   leerEmpleado(worker);
   while (worker.apellido <> 'fin') do begin
@@ -75,11 +73,10 @@ begin
   close(empleados);
 end;
 
-procedure listarEmpleados(nombreFisico: str25);
+procedure listarEmpleados(var empleados: archivo);
 var
-  worker: empleado; empleados: archivo;
+  worker: empleado;
 begin
-  assign(empleados, nombreFisico);
   reset(empleados);
   while not eof (empleados) do begin
     read(empleados, worker);
@@ -89,11 +86,10 @@ begin
   writeln();
 end;
 
-procedure listarEmpleadosEspecificos(nombreFisico: str25);
+procedure listarEmpleadosEspecificos(var empleados: archivo);
 var
-  empleados: archivo; worker: empleado; name: str25;
+  worker: empleado; name: str25;
 begin
-  assign(empleados, nombreFisico);
   reset(empleados);
   write('Ingrese el nombre o apellido que desea filtrar: ');
   readln(name);
@@ -107,11 +103,10 @@ begin
   writeln();
 end;
 
-procedure listarEmpleadosMayores(nombreFisico: str25);
+procedure listarEmpleadosMayores(var empleados: archivo);
 var
-  empleados: archivo; worker: empleado;
+  worker: empleado;
 begin
-  assign(empleados, nombreFisico);
   reset(empleados);
   while not eof (empleados) do begin
     read(empleados, worker);
@@ -123,23 +118,25 @@ begin
 end;
 
 var
+  empleados: archivo;
   opcion, subOpcion: integer;
   nombreFisico: String[25];
 begin
   write('Ingrese el nombre del archivo a crear o utilizar: ');
   readln(nombreFisico);
+  assign(empleados, nombreFisico);
   writeln();
   repeat
     opcion:= menu();
     case opcion of 
-      1: crearEmpleados(nombreFisico);
+      1: crearEmpleados(empleados);
       2: begin
         subOpcion:= submenu();
         while (subOpcion <> 0) do begin
           case subOpcion of
-            1: listarEmpleadosEspecificos(nombreFisico);
-            2: listarEmpleados(nombreFisico);
-            3: listarEmpleadosMayores(nombreFisico)
+            1: listarEmpleadosEspecificos(empleados);
+            2: listarEmpleados(empleados);
+            3: listarEmpleadosMayores(empleados)
             else begin writeln('Opcion no reconocida');
               writeln();
             end;
@@ -153,5 +150,4 @@ begin
       end;
     end;
   until(opcion = 0);
-  readln;
 end.

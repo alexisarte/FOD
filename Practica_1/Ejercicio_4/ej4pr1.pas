@@ -185,7 +185,7 @@ begin
 end;
 
 var
-  opcion, subOpcion, subOpcion2: integer;
+  opcion, subOpcion: integer;
   nombreFisico: String[25];
   empleados: archivo;
 begin
