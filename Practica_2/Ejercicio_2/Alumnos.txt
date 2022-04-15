@@ -1,0 +1,6 @@
+1 Perez
+1 5 Juan 
+2 Rosales
+4 5 Maria 
+3 Sanchez
+5 5 Alexis 

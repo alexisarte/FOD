@@ -1,0 +1,1 @@
+abrirDetalles(vectorRegistroDetalle, vectorArchivoDetalle);

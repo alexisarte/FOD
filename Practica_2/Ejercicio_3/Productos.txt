@@ -1,0 +1,6 @@
+1 Pescado
+15 10 600.0 Fresco
+2 Frambuesa
+20 11 300.5 Madura
+3 Tortilla
+8 5 500 Frozen
