@@ -1,0 +1,3 @@
+Codigo de novela: 1  Genero: fds   Nombre: novela1  Duracion: 123  Director: steven  Precio: 123.00
+ESPACIO LIBRE
+Codigo de novela: 5  Genero: d   Nombre: aaaaa  Duracion: 145  Director: ju  Precio: 54.00

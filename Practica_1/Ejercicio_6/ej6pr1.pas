@@ -159,9 +159,9 @@ var
   celu: celular; texto: Text;
 begin
   if (opcion = 5) then
-    assign(texto, 'data/Celulares3.txt')
+    assign(texto, 'Celulares3.txt')
   else
-    assign(texto, 'data/SinStock.txt');
+    assign(texto, 'SinStock.txt');
   rewrite(texto);
   reset(celulares);
   while not eof(celulares) do begin
@@ -173,6 +173,7 @@ begin
     end;
   end;
   close(texto);
+  close(celulares);
 end;
 
 var

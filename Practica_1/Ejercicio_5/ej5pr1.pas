@@ -114,6 +114,7 @@ begin
     writeln(texto, celu.nombre);
   end;
   close(texto);
+  close(celulares);
 end;
 
 var
