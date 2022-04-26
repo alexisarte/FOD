@@ -70,7 +70,7 @@ var
     novela1: novela;
 begin
     rewrite(novelas);
-    novela1.codigo:= 0;
+    novela1.codigo:= MIN;
     write(novelas, novela1);
     leerNovela(novela1);
     while (novela1.codigo <> MIN) do begin
@@ -144,21 +144,21 @@ end;
 
 procedure eliminarNovela(var novelas: archivo);
 var
-    regCabecera, novela1: novela; pos, codigo: Integer;
+    novelaAuxiliar, novela1: novela; pos, codigo: Integer;
 begin
     write('Ingrese el codigo de la novela a eliminar: ');
     readln(codigo);
     reset(novelas);
-    leer(novelas, regCabecera);
+    leer(novelas, novelaAuxiliar);
     pos:= buscarNovela(novelas, codigo);
     if (pos <> -1) then begin
         Seek(novelas, pos);
         read(novelas, novela1);
         novela1.codigo:= pos * -1;
+        Seek(novelas, pos);
+        Write(novelas, novelaAuxiliar);
         seek(novelas, 0); 
         Write(novelas, novela1);
-        Seek(novelas, pos);        
-        Write(novelas, regCabecera);
         WriteLn('Novela eliminada con exito') 
     end
     else begin
