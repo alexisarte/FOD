@@ -1,7 +1,7 @@
 program ej4pr2;
 const
-    MAX =  5;
-    valorAlto = 32767;
+MAX =  5;
+valorAlto = 32767;
 type
     str25 = String[25];
     rango = 0..MAX;
@@ -58,13 +58,16 @@ end;
 
 procedure leer(var archivoDetalle1: archivoDetalle; var dato: registro);
 begin
-    if (not Eof(archivoDetalle1)) then
-        Read(archivoDetalle1, dato)
-    else
-        dato.codigoUsuario:= valorAlto;
+    if (not Eof(archivoDetalle1)) then begin 
+        Read(archivoDetalle1, dato) 
+    end
+    else begin 
+        dato.codigoUsuario:= valorAlto 
+    end;
 end;
 
-procedure generarArchivoMaestro(var registros: archivoMaestro; var vectorRegistroDetalle: registrosDetalle; vectorArchivoDetalle: archivosDetalle);
+procedure generarArchivoMaestro(var registros: archivoMaestro; var vectorRegistroDetalle: registrosDetalle;
+    vectorArchivoDetalle: archivosDetalle);
     
     procedure minimo(var regMinimo: registro; var vectorRegistroDetalle: registrosDetalle; vectorArchivoDetalle: archivosDetalle);
     var
@@ -118,7 +121,7 @@ begin
     Close(registros);   
 end;
 
-procedure mostrarregistro(registro1: registroTotal);
+procedure mostrarRegistro(registro1: registroTotal);
 begin
     WriteLn('Codigo de usuario: ', registro1.codigoUsuario);
     WriteLn('Tiempo total de sesiones abiertas: ', registro1.tiempoTotal);
@@ -133,7 +136,7 @@ begin
     Reset(registros);
     while not eof(registros) do begin
         Read(registros, registro1);
-        mostrarregistro(registro1);
+        mostrarRegistro(registro1);
     end;
     Close(registros);
 end;
