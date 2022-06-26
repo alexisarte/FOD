@@ -76,6 +76,9 @@ procedure actualizarMaestro(var maestro: archivoMaestro; var detalles: vDetalles
     end;
 
 var
+    codLocalidadActual, codCepaActual: Integer;
+    casosCovid1: regCasosCovid;
+    fallecidos, recuperados: Integer;
     regMaestro: infoMinisterio;
     min: infoMunicipio;
 begin
@@ -83,18 +86,25 @@ begin
     Reset(maestro);
     minimo(detalles, regDetalles1, min);
     while (min.codLocalidad <> VALOR_ALTO) do begin
-        Read(maestro, regMaestro);
-        while (regMaestro.codLocalidad = min.codLocalidad) do begin
+        codLocalidadActual:= min.codLocalidad;
+        while (codLocalidadActual = min.codLocalidad) do begin
+            fallecidos:= 0;
+            recuperados:= 0;
+            codCepaActual:= min.codCepa;
+            while ((regMaestro.codLocalidad = min.codLocalidad) and (regMaestro.codCepa = min.codCepa)) do begin
+                fallecidos:= fallecidos + min.fallecidos;
+                recuperados:= recuperados + min.recuperados;
+                casosCovid1.activos:= min.casosCovid.activos;
+                casosCovid1.nuevos:= min.casosCovid.nuevos; 
+                minimo(detalles, regDetalles1, min);
+            end;
             while ((regMaestro.codLocalidad <> min.codLocalidad) or (regMaestro.codCepa <> min.codCepa)) do begin
                 Read(maestro, regMaestro);
             end;
-            while ((regMaestro.codLocalidad = min.codLocalidad) and (regMaestro.codCepa = min.codCepa)) do begin
-                regMaestro.fallecidos:= regMaestro.fallecidos + min.fallecidos;
-                regMaestro.recuperados:= regMaestro.recuperados + min.recuperados;
-                regMaestro.casosCovid.activos:= min.casosCovid.activos;
-                regMaestro.casosCovid.nuevos:= min.casosCovid.nuevos; 
-                minimo(detalles, regDetalles1, min);
-            end;
+            regMaestro.fallecidos:= regMaestro.fallecidos + fallecidos;
+            regMaestro.recuperados:= regMaestro.recuperados + recuperados;
+            regMaestro.casosCovid.activos:= casosCovid1.activos;
+            regMaestro.casosCovid.nuevos:= casosCovid1.nuevos;
             Seek(maestro, FilePos(maestro) - 1);
             Write(maestro, regMaestro);
         end;
