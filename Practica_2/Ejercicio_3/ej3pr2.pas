@@ -136,7 +136,6 @@ begin
         Write(productos, regMaestro);
     end;
     for i:= 1 to MAX do begin
-        Str(i, iStr);
         Close(vectorArchivoDetalle[i]);
     end;
     Close(productos);   

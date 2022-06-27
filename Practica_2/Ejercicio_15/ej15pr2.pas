@@ -77,6 +77,7 @@ var
     min: regDetalle;
     localidadesSinChapa, i: Integer;
 begin
+    Reset(maestro1); 
     localidadesSinChapa:= 0;
     abrirYLeerDetalles(detalles, regDetalles);
     minimo(detalles, regDetalles, min);
@@ -85,21 +86,23 @@ begin
         while ((regMaestro1.codProvincia <> min.codProvincia) and (regMaestro1.codLocalidad <> min.codLocalidad)) do begin
             Read(maestro1, regMaestro1);
         end;
-        regMaestro1.viviendasSinLuz -= min.viviendasConLuz;
-        regMaestro1.viviendasSinGas -= min.viviendasConGas;
-        regMaestro1.viviendasDeChapa -= min.viviendasConstruidas;
-        regMaestro1.viviendasSinAgua -= min.viviendasConAgua;
-        regMaestro1.viviendasSinSanitarios -= min.entregaSanitarios;
+        regMaestro1.viviendasSinLuz:= regMaestro1.viviendasSinLuz - min.viviendasConLuz;
+        regMaestro1.viviendasSinGas:= regMaestro1.viviendasSinGas - min.viviendasConGas;
+        regMaestro1.viviendasDeChapa:= regMaestro1.viviendasDeChapa - min.viviendasConstruidas;
+        regMaestro1.viviendasSinAgua:= regMaestro1.viviendasSinAgua - min.viviendasConAgua;
+        regMaestro1.viviendasSinSanitarios:= regMaestro1.viviendasSinSanitarios - min.entregaSanitarios;
         minimo(detalles, regDetalles, min);
         if (regMaestro1.viviendasDeChapa < 0) then begin
-            localidadesSinChapa += 1;
+            localidadesSinChapa:= localidadesSinChapa + 1;
         end;
+        Seek(maestro1, FilePos(maestro1) - 1);
+        write(maestro1, regMaestro1);
     end;
-    writeln('Cantidad de localidades sin viviendas de chapa: ', localidadesSinChapa);
     Close(maestro1);
     for i:= 1 to MAX do begin
         Close(detalles[i]);
     end;
+    writeln('Cantidad de localidades sin viviendas de chapa: ', localidadesSinChapa);
 end;
 
 var
@@ -107,5 +110,6 @@ var
     detalles: vDetalles;
     regDetalles: vRegDetalles;
 begin
+    Assign(maestro1, 'maestro.dat');
     actualizarMaestro(maestro1, detalles, regDetalles);
 end.
