@@ -83,7 +83,7 @@ begin
     minimo(detalles, regDetalles, min);
     while (min.codProvincia <> VALOR_ALTO) do begin
         Read(maestro1, regMaestro1);
-        while ((regMaestro1.codProvincia <> min.codProvincia) and (regMaestro1.codLocalidad <> min.codLocalidad)) do begin
+        while ((regMaestro1.codProvincia <> min.codProvincia) or (regMaestro1.codLocalidad <> min.codLocalidad)) do begin
             Read(maestro1, regMaestro1);
         end;
         regMaestro1.viviendasSinLuz:= regMaestro1.viviendasSinLuz - min.viviendasConLuz;
