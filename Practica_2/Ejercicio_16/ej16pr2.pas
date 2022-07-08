@@ -79,7 +79,7 @@ begin
         while ((regMaestro.fecha <> min.fecha) or (regMaestro.codSeminario <> min.codSeminario)) do begin
             Read(maestro1, regMaestro);
         end;
-        while ((regMaestro.fecha = min.fecha) or (regMaestro.codSeminario = min.codSeminario)) do begin
+        while ((regMaestro.fecha = min.fecha) and (regMaestro.codSeminario = min.codSeminario)) do begin
             regMaestro.ejemplaresVendidos:= regMaestro.ejemplaresVendidos + min.ejemplaresVendidos;
             minimo(detalles, regDetalles, min);
         end;
